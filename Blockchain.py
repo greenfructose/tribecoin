@@ -4,7 +4,7 @@ from Block import Block
 
 
 class Blockchain:
-    diff = 40
+    diff = 20
     maxNonce = 2 ** 32
     target = 2 ** (256 - diff)
 
@@ -19,7 +19,7 @@ class Blockchain:
         self.block.next = block
         self.block = self.block.next
 
-    @cuda.jit
+    # @cuda.jit
     def mine(self, block):
         for n in range(self.maxNonce):
             if int(block.hash(), 16) <= self.target:
